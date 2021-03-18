@@ -5,6 +5,32 @@
     <link>https://f32.io/</link>
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language><atom:link href="https://f32.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 18 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://f32.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React项目升级到Webpack 5</title>
+      <link>https://f32.io/posts/react-upgrade-to-webpack-5/</link>
+      <pubDate>Thu, 18 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://f32.io/posts/react-upgrade-to-webpack-5/</guid>
+      <description>create-react-app还没有更新对Webpack 5的支持，正好最近有空，自己动手升级一下。我的项目比较小，webpack.config.js和CRA eject出来的初始配置文件区别不大，大概花了半个小时弄好。
+ 官方升级文档：https://webpack.js.org/migrate/5/
+ 完整的webpack.config.js https://gist.github.com/f32by/b7245f57a88011443151836738816243
+要点  Terser Plugin中的sourceMap和cache已经被移除，需要删除这两个选项；</description>
+    </item>
+    
+    <item>
+      <title>Vulkan 坐标系</title>
+      <link>https://f32.io/posts/vulkan-coordinate-system/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://f32.io/posts/vulkan-coordinate-system/</guid>
+      <description>不同图形API的NDC DirectX / Metal  Left-handed
+Y-down
+X-right
+Z-inward
+Depth [-1, 1]</description>
+    </item>
+    
   </channel>
 </rss>

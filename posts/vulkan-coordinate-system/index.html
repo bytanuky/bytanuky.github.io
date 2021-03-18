@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme=""><head>
-    <title> UnsafeBy | 404 Page not found </title>
+    <title> UnsafeBy | Vulkan 坐标系 </title>
 
     
     <meta charset="utf-8"><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -29,7 +29,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://f32.io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://f32.io/favicon-16x16.png">
 
-    <link rel="canonical" href="https://f32.io/404.html">
+    <link rel="canonical" href="https://f32.io/posts/vulkan-coordinate-system/">
 
     
     
@@ -50,8 +50,12 @@
                 crossorigin="anonymous"></script>
     
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="404 Page not found"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Vulkan 坐标系"/>
+<meta name="twitter:description" content="不同图形API的NDC DirectX / Metal  Left-handed
+Y-down
+X-right
+Z-inward
+Depth [-1, 1]"/>
 
 </head>
 <body><div class="sidebar . ">
@@ -112,12 +116,57 @@
 
     <div class="autopagerize_page_element">
         <div class="content">
-    <div class="page_404">
-        <h1>404</h1>
-        <h2>Page Not Found</h2>
-        <p>Sorry, this page does not exist.</p>
-        <p>You can head back to <a href="https://f32.io/">homepage</a>.</p>
+    <div class="post  . ">
+        <div class="post-content">
+            
+            <div class="post-title">
+                <h3>Vulkan 坐标系</h3>
+                
+            </div>
+
+            <h2 id="不同图形api的ndc">不同图形API的NDC</h2>
+<h2 id="directx--metal">DirectX / Metal</h2>
+<blockquote>
+<p>Left-handed</p>
+<p>Y-down</p>
+<p>X-right</p>
+<p>Z-inward</p>
+<p>Depth [-1, 1]</p>
+<p>Origin at top left</p>
+</blockquote>
+<h3 id="opengl">OpenGL</h3>
+<blockquote>
+<p>Right-handed
+Y-up</p>
+<p>X-right</p>
+<p>Z-inward</p>
+<p>Depth [-1, 1]</p>
+<p>Origin at bottom left</p>
+</blockquote>
+<h3 id="vulkan"><em>Vulkan</em></h3>
+<blockquote>
+<p>Right-handed
+Y-down
+X-right
+Z-inward
+Depth [0, 1]</p>
+</blockquote>
+<h2 id="references">References</h2>
+<ol>
+<li><a href="https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/">https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/</a></li>
+<li><a href="https://matthewwellings.com/blog/the-new-vulkan-coordinate-system/">https://matthewwellings.com/blog/the-new-vulkan-coordinate-system/</a></li>
+</ol>
+</div>
+        <div class="post-footer">
+            <div class="info">
+                
+                
+            </div>
+        </div>
+
+        
     </div>
+
 
         </div>
     </div>
