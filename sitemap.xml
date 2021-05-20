@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://f32.io/</loc>
-    <lastmod>2021-03-18T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://f32.io/posts/</loc>
-    <lastmod>2021-03-18T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://f32.io/posts/rust-with-vscode/</loc>
+    <lastmod>2021-05-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://f32.io/posts/react-upgrade-to-webpack-5/</loc>
     <lastmod>2021-03-18T00:00:00+00:00</lastmod>

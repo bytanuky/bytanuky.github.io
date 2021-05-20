@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" data-theme=""><head>
+    <title> f32by | 使用VSCode进行Rust开发 </title>
+
+    
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.83.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet"
+          href="https://f32.io/css/style.min.0c643de4008adca329f7a2d616ce308cca99d4ef45e4cca307323e7857910194.css"
+          integrity="sha256-DGQ95ACK3KMp96LWFs4wjMqZ1O9F5MyjBzI&#43;eFeRAZQ="
+          crossorigin="anonymous"
+          type="text/css">
+    
+    <link rel="stylesheet"
+        href="https://f32.io/css/markupHighlight.min.8735c129318a1c824d066fc2cd1e3911054460819c296ac99007aeb5044b6605.css"
+        integrity="sha256-hzXBKTGKHIJNBm/CzR45EQVEYIGcKWrJkAeutQRLZgU="
+        crossorigin="anonymous"
+        type="text/css">
+    
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" 
+    crossorigin="anonymous" />
+
+    
+    <link rel="shortcut icon" href="https://f32.io/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://f32.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://f32.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://f32.io/favicon-16x16.png">
+
+    <link rel="canonical" href="https://f32.io/posts/rust-with-vscode/">
+
+    
+    
+    
+    
+    <script type="text/javascript"
+            src="https://f32.io/js/anatole-header.min.0c05c0a90d28c968a1cad4fb31abd0b8e1264e788ccefed022ae1d3b6f627514.js"
+            integrity="sha256-DAXAqQ0oyWihytT7MavQuOEmTniMzv7QIq4dO29idRQ="
+            crossorigin="anonymous"></script>
+
+
+    
+        
+        
+        <script type="text/javascript"
+                src="https://f32.io/js/anatole-theme-switcher.min.8ef71e0fd43f21a303733dbbecae5438b791d2b826c68a9883bd7aa459a076d2.js"
+                integrity="sha256-jvceD9Q/IaMDcz277K5UOLeR0rgmxoqYg716pFmgdtI="
+                crossorigin="anonymous"></script>
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用VSCode进行Rust开发"/>
+<meta name="twitter:description" content="用了一段时间CLion，决定换到VSCode了，原因有下：
+  IntelliJ Rust插件解析proc macro很慢，Expanding macros导致修改某些含有多个macro调用的源文件很慢；
+  rust-analyzer提供了更好的LSP支持，现阶段IntelliJ Rust仍然使用JetBrains自己写的Engine，估计后期会像clangd一样引入rust-analyzer；"/>
+
+</head>
+<body><div class="sidebar . ">
+    <div class="logo-title">
+        <div class="title">
+            <img src="https://f32.io/images/avatar.png" alt="profile picture">
+            <h3 title=""><a href="/">f32by&#39;s blog</a></h3>
+            <div class="description">
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <ul class="social-links">
+        
+            <li>
+                <a href="https://github.com/f32by/" rel="me" aria-label="GitHub">
+                    <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; f32by  2021 </div>
+    </div>
+</div>
+<div class="main">
+    <div class="page-top  . ">
+    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+    </a>
+    <ul class="nav" id="navMenu">
+        
+        
+            
+            <li><a 
+                   href="/"
+                        
+                   title="">Home</a></li>
+        
+            
+            <li><a 
+                   href="/posts/"
+                        
+                   title="">Posts</a></li>
+        
+        
+        
+            <li class="theme-switch-item">
+                <a class="theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="autopagerize_page_element">
+        <div class="content">
+    <div class="post  . ">
+        <div class="post-content">
+            
+            <div class="post-title">
+                <h3>使用VSCode进行Rust开发</h3>
+                
+            </div>
+
+            <p>用了一段时间CLion，决定换到VSCode了，原因有下：</p>
+<ol>
+<li>
+<p>IntelliJ Rust插件解析proc macro很慢，<em>Expanding macros</em>导致修改某些含有多个macro调用的源文件很慢；</p>
+</li>
+<li>
+<p>rust-analyzer提供了更好的LSP支持，现阶段IntelliJ Rust仍然使用JetBrains自己写的Engine，估计后期会像clangd一样引入rust-analyzer；</p>
+</li>
+<li>
+<p>VSCode整体流畅度更高。之前测试过给CLion使用带有Metal支持（<a href="https://openjdk.java.net/jeps/382">Project Lanai</a>）的测试版JVM，仍然没有太大改观。</p>
+</li>
+</ol>
+<h2 id="安装rust">安装Rust</h2>
+<p>通过<code>Homebrew</code>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$&gt; brew install rustup
+$&gt; rustup install nightly <span style="color:#75715e"># 也可以使用stable channel</span>
+
+<span style="color:#75715e"># 配置环境变量</span>
+$&gt; echo <span style="color:#e6db74">&#39;export PATH=$HOME/.cargo/bin:$PATH&#39;</span> &gt;&gt; $HOME/.zshrc
+
+<span style="color:#75715e"># 测试安装成功</span>
+$&gt; rustc --version
+
+rustc 1.54.0-nightly <span style="color:#f92672">(</span>3e99439f4 2021-05-17<span style="color:#f92672">)</span>
+
+</code></pre></div><h2 id="vscode扩展">VSCode扩展</h2>
+<ol>
+<li>
+<p>rust-analyzer (<a href="https://marketplace.visualstudio.com/items?itemName=matklad.rust-analyzer">扩展页面</a>, <a href="https://rust-analyzer.github.io/">主页</a>)：提供Rust LSP支持。rust-analyzer比RLS体验更好，而且未来会作为RLS2.0的一部分替代现在的RLS；</p>
+</li>
+<li>
+<p>Better TOML (<a href="https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml">扩展页面</a>)：TOML支持，提供高亮及语法验证；</p>
+</li>
+<li>
+<p>CodeLLDB (<a href="https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb">扩展页面</a>)：Rust调试功能；</p>
+</li>
+<li>
+<p>Bookmarks (<a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks">扩展页面</a>)：代码书签。快捷键<code>Command + Option + K</code>；</p>
+</li>
+<li>
+<p>GitLens (<a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">扩展页面</a>)： Git功能增强；</p>
+</li>
+</ol>
+<p>还有一些UI相关的扩展，具体如下：</p>
+<ol>
+<li>
+<p>Auto Hide (<a href="https://marketplace.visualstudio.com/items?itemName=sirmspencer.vscode-autohide">扩展页面</a>)： 自动隐藏<code>Panel</code>和<code>Sidebar</code>，无需按下<code>Command + J</code>和<code>Command + B</code>；</p>
+</li>
+<li>
+<p>Customize UI (<a href="https://marketplace.visualstudio.com/items?itemName=iocave.customize-ui">扩展页面</a>)： 合并窗口标题栏及标签页栏。该扩展依赖<code>Monkey Patch</code>扩展，安装Cutomize UI时会自动安装；</p>
+</li>
+</ol>
+<h2 id="配色">配色</h2>
+<p>根据个人喜好酌情配置……
+我比较懒，一般就用默认主题+改变一下背景色，纯白色看久了有点累。</p>
+<p>下面是我自己根据多个主题缝合的配色，来源如下：</p>
+<ol>
+<li>VSCode 默认主题 <code>Default Light+</code>；</li>
+<li><code>JetBrains Rider</code>默认的C#主题；</li>
+<li>rustfmt文档中的示例代码配色。</li>
+</ol>
+<p>将如下配置放入VSCode的<code>settings.json</code>中：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;editor.tokenColorCustomizations&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+    <span style="color:#f92672">&#34;[Default Light+]&#34;</span>: {
+        <span style="color:#f92672">&#34;comments&#34;</span>: <span style="color:#e6db74">&#34;#8c8c8c&#34;</span>,
+        <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#f92672">&#34;keywords&#34;</span>: <span style="color:#e6db74">&#34;#0033b3&#34;</span>,
+        <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#f92672">&#34;variables&#34;</span>: <span style="color:#e6db74">&#34;#000000&#34;</span>,
+        <span style="color:#f92672">&#34;textMateRules&#34;</span>: [
+            <span style="color:#960050;background-color:#1e0010">//</span> {
+            <span style="color:#960050;background-color:#1e0010">//</span>     <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;entity.name.type.rust&#34;</span>,
+            <span style="color:#960050;background-color:#1e0010">//</span>     <span style="color:#f92672">&#34;settings&#34;</span>: {
+            <span style="color:#960050;background-color:#1e0010">//</span>         <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#FF0000&#34;</span>
+            <span style="color:#960050;background-color:#1e0010">//</span>     }
+            <span style="color:#960050;background-color:#1e0010">//</span> },
+            {
+                <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;meta.function.definition.rust&#34;</span>,
+                <span style="color:#f92672">&#34;settings&#34;</span>: {
+                    <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#00627a&#34;</span>
+                }
+            },
+            {
+                <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;meta.attribute.rust&#34;</span>,
+                <span style="color:#f92672">&#34;settings&#34;</span>: {
+                    <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#9e880d&#34;</span>
+                }
+            },
+            {
+                <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;variable.language.self.rust&#34;</span>,
+                <span style="color:#f92672">&#34;settings&#34;</span>: {
+                    <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#ca233a&#34;</span>,
+                }
+            },
+            {
+                <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;entity.name.function.macro.rust&#34;</span>,
+                <span style="color:#f92672">&#34;settings&#34;</span>: {
+                    <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#dd6718&#34;</span>,
+                }
+            }
+        ],
+        
+    }
+}<span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;editor.semanticTokenColorCustomizations&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+    <span style="color:#f92672">&#34;[Default Light+]&#34;</span>: {
+        <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
+        <span style="color:#f92672">&#34;rules&#34;</span>: {
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">()</span> <span style="color:#960050;background-color:#1e0010">in</span> <span style="color:#960050;background-color:#1e0010">attributes</span>
+            <span style="color:#f92672">&#34;parenthesis.attribute:rust&#34;</span>: <span style="color:#e6db74">&#34;#9e880d&#34;</span>,
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Variable</span>
+            <span style="color:#f92672">&#34;angle:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#f92672">&#34;comma:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#f92672">&#34;brace:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#f92672">&#34;interface:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#f92672">&#34;namespace:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#f92672">&#34;operator:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#f92672">&#34;parameter:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#f92672">&#34;parenthesis:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#f92672">&#34;property:rust&#34;</span>: <span style="color:#e6db74">&#34;#871094&#34;</span>,
+            <span style="color:#f92672">&#34;punctuation:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#f92672">&#34;struct:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#f92672">&#34;variable:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#f92672">&#34;variable.static.constant:rust&#34;</span>: {
+                <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#871094&#34;</span>,
+                <span style="color:#f92672">&#34;italic&#34;</span>: <span style="color:#66d9ef">true</span>,
+            },
+
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Method</span> <span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">function</span>
+            <span style="color:#f92672">&#34;method:rust&#34;</span>: <span style="color:#e6db74">&#34;#5e2bb4&#34;</span>,
+            <span style="color:#f92672">&#34;method.static.trait&#34;</span>: {
+                <span style="color:#f92672">&#34;italic&#34;</span>: <span style="color:#66d9ef">true</span>,
+            },
+            <span style="color:#f92672">&#34;function.declaration:rust&#34;</span>: <span style="color:#e6db74">&#34;#5e2bb4&#34;</span>,
+            <span style="color:#f92672">&#34;function.attribute:rust&#34;</span>: <span style="color:#e6db74">&#34;#9e880d&#34;</span>,
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Macro</span>
+            <span style="color:#f92672">&#34;macro:rust&#34;</span>: <span style="color:#e6db74">&#34;#dd6718&#34;</span>,
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Keyword</span>
+            <span style="color:#f92672">&#34;keyword:rust&#34;</span>: <span style="color:#e6db74">&#34;#ca233a&#34;</span>,
+            <span style="color:#f92672">&#34;builtinType:rust&#34;</span>: <span style="color:#e6db74">&#34;#ca233a&#34;</span>,
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Enum</span>
+            <span style="color:#f92672">&#34;enum:rust&#34;</span>: <span style="color:#e6db74">&#34;#0e72a4&#34;</span>,
+            <span style="color:#f92672">&#34;enumMember:rust&#34;</span>: {
+                <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#0e72a4&#34;</span>,
+                <span style="color:#f92672">&#34;italic&#34;</span>: <span style="color:#66d9ef">true</span>
+            },
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Comment</span>
+            <span style="color:#f92672">&#34;comment:rust&#34;</span>: <span style="color:#e6db74">&#34;#8c8c8c&#34;</span>,
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Type</span> <span style="color:#960050;background-color:#1e0010">parameter</span>
+            <span style="color:#f92672">&#34;typeParameter:rust&#34;</span>: {
+                <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#43a047&#34;</span>,
+                <span style="color:#f92672">&#34;italic&#34;</span>: <span style="color:#66d9ef">true</span>,
+                <span style="color:#f92672">&#34;bold&#34;</span>: <span style="color:#66d9ef">true</span>
+            },
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Lifetime</span>
+            <span style="color:#f92672">&#34;lifetime:rust&#34;</span>: <span style="color:#e6db74">&#34;#20999d&#34;</span>,
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Unresolved</span> <span style="color:#960050;background-color:#1e0010">reference</span>
+            <span style="color:#f92672">&#34;unresolvedReference&#34;</span>: {
+                <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#d50000&#34;</span>,
+                <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#f92672">&#34;underline&#34;</span>: <span style="color:#66d9ef">true</span>,
+            }
+        },
+    },
+}<span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;workbench.colorCustomizations&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+    <span style="color:#f92672">&#34;statusBar.background&#34;</span>: <span style="color:#e6db74">&#34;#8d6e63&#34;</span>,
+    <span style="color:#f92672">&#34;activityBar.background&#34;</span>: <span style="color:#e6db74">&#34;#424242&#34;</span>,
+    <span style="color:#f92672">&#34;input.background&#34;</span>: <span style="color:#e6db74">&#34;#f5f5f5&#34;</span>,
+    <span style="color:#f92672">&#34;menu.background&#34;</span>: <span style="color:#e6db74">&#34;#f5f5f5&#34;</span>,
+    <span style="color:#f92672">&#34;sideBar.background&#34;</span>: <span style="color:#e6db74">&#34;#e0e0e0&#34;</span>,
+    <span style="color:#f92672">&#34;panel.background&#34;</span>: <span style="color:#e6db74">&#34;#f5f5f5&#34;</span>,
+    <span style="color:#f92672">&#34;editor.background&#34;</span>: <span style="color:#e6db74">&#34;#f5f5f5&#34;</span>,
+}<span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><h2 id="效果图">效果图</h2>
+<p>最终开发环境效果如下：</p>
+<p><img src="/images/rust-with-vscode/full.png" alt="Full UI"></p>
+<p><img src="/images/rust-with-vscode/autocomplete.png" alt="Auto Complete"></p>
+<p><img src="/images/rust-with-vscode/debugging.png" alt="Debugging"></p>
+<p><img src="/images/rust-with-vscode/color_scheme.png" alt="Color Scheme"></p>
+</div>
+        <div class="post-footer">
+            <div class="info">
+                
+                
+            </div>
+        </div>
+
+        
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        src="https://f32.io/js/jquery.min.64d0083866906099f942140bc1c5cba4b1bf65783c52e4a63c5c46bf9dbc41f4.js"
+        integrity="sha256-ZNAIOGaQYJn5QhQLwcXLpLG/ZXg8UuSmPFxGv528QfQ="
+        crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript"
+        src="https://f32.io/js/bundle.min.45159b0e20ba3878972e064b7edc464c31a9e35a0d0a6a71e3fec84efdbe2ea5.js"
+        integrity="sha256-RRWbDiC6OHiXLgZLftxGTDGp41oNCmpx4/7ITv2&#43;LqU="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript"
+        src="https://f32.io/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js"
+        integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w="
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

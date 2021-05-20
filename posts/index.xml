@@ -6,7 +6,18 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 18 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://f32.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://f32.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用VSCode进行Rust开发</title>
+      <link>https://f32.io/posts/rust-with-vscode/</link>
+      <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://f32.io/posts/rust-with-vscode/</guid>
+      <description>用了一段时间CLion，决定换到VSCode了，原因有下：
+  IntelliJ Rust插件解析proc macro很慢，Expanding macros导致修改某些含有多个macro调用的源文件很慢；
+  rust-analyzer提供了更好的LSP支持，现阶段IntelliJ Rust仍然使用JetBrains自己写的Engine，估计后期会像clangd一样引入rust-analyzer；</description>
+    </item>
+    
     <item>
       <title>React项目升级到Webpack 5</title>
       <link>https://f32.io/posts/react-upgrade-to-webpack-5/</link>
