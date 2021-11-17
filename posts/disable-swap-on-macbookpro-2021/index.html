@@ -134,7 +134,7 @@
 <p>使用此方法会导致安全等级降低至<code>Permissive Security</code>，从而导致<strong>无法运行任何iOS app</strong>：</p>
 </li>
 </ol>
-<p>![Permissive Policy Error](/images/disable-swap-on-macbookpro-2021/permissive-policy-error.png =250x)</p>
+<p><img src="/images/disable-swap-on-macbookpro-2021/permissive-policy-error.png" alt="Permissive Policy Error"></p>
 <p>因为我没有运行iOS app的需求，所以这一点对我没有任何影响。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 关机，长按电源键，选择进入Recovery</span>
 &gt; bputil -a <span style="color:#75715e"># Enables sending custom boot args to the kernel</span>
