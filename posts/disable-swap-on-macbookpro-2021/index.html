@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme=""><head>
-    <title> f32by | React项目升级到Webpack 5 </title>
+    <title> f32by | 在Apple Silicon设备上禁用swap </title>
 
     
     <meta charset="utf-8"><meta name="generator" content="Hugo 0.89.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -29,7 +29,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://f32.io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://f32.io/favicon-16x16.png">
 
-    <link rel="canonical" href="https://f32.io/posts/react-upgrade-to-webpack-5/">
+    <link rel="canonical" href="https://f32.io/posts/disable-swap-on-macbookpro-2021/">
 
     
     
@@ -50,11 +50,11 @@
                 crossorigin="anonymous"></script>
     
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="React项目升级到Webpack 5"/>
-<meta name="twitter:description" content="create-react-app还没有更新对Webpack 5的支持，正好最近有空，自己动手升级一下。我的项目比较小，webpack.config.js和CRA eject出来的初始配置文件区别不大，大概花了半个小时弄好。
- 官方升级文档：https://webpack.js.org/migrate/5/
- 完整的webpack.config.js https://gist.github.com/f32by/b7245f57a88011443151836738816243
-要点  Terser Plugin中的sourceMap和cache已经被移除，需要删除这两个选项；"/>
+<meta name="twitter:title" content="在Apple Silicon设备上禁用swap"/>
+<meta name="twitter:description" content="步骤 64G内存不用就是浪费，日常开一个16G的ramdisk用于存放一些日常工作中频繁生成的临时文件、图片等。
+注意：
+  搭载Apple Silicon芯片设备上的默认系统安全策略变得更加保守，内核启动时会忽略自定义的启动参数（boot-args）。
+  使用此方法会导致安全等级降低至Permissive Security，从而导致无法运行任何iOS app："/>
 
 </head>
 <body><div class="sidebar . ">
@@ -119,43 +119,43 @@
         <div class="post-content">
             
             <div class="post-title">
-                <h3>React项目升级到Webpack 5</h3>
+                <h3>在Apple Silicon设备上禁用swap</h3>
                 
             </div>
 
-            <p><code>create-react-app</code>还没有更新对Webpack 5的支持，正好最近有空，自己动手升级一下。我的项目比较小，webpack.config.js和CRA eject出来的初始配置文件区别不大，大概花了半个小时弄好。</p>
-<blockquote>
-<p>官方升级文档：https://webpack.js.org/migrate/5/</p>
-</blockquote>
-<h2 id="完整的webpackconfigjs">完整的webpack.config.js</h2>
-<p><a href="https://gist.github.com/f32by/b7245f57a88011443151836738816243">https://gist.github.com/f32by/b7245f57a88011443151836738816243</a></p>
-<h2 id="要点">要点</h2>
-<blockquote>
-<p><code>Terser Plugin</code>中的<code>sourceMap</code>和<code>cache</code>已经被移除，需要删除这两个选项；</p>
-</blockquote>
-<blockquote>
-<p><code>module.rules</code>中的<a href="https://github.com/webpack-contrib/eslint-loader">eslint-loader</a> 已经被弃用，将这段改用<a href="https://github.com/webpack-contrib/eslint-webpack-plugin">eslint-webpack-plugin</a>。附上我的配置：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
-<span style="color:#75715e">// npm i eslint-webpack-plugin -D
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ESLintPlugin</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span><span style="color:#f92672">&gt;</span> (<span style="color:#e6db74">&#39;eslint-webpack-plugin&#39;</span>)
+            <h2 id="步骤">步骤</h2>
+<p>64G内存不用就是浪费，日常开一个16G的ramdisk用于存放一些日常工作中频繁生成的临时文件、图片等。</p>
+<p>注意：</p>
+<ol>
+<li>
+<p>搭载Apple Silicon芯片设备上的默认系统安全策略变得更加保守，内核启动时会忽略自定义的启动参数（boot-args）。</p>
+</li>
+<li>
+<p>使用此方法会导致安全等级降低至<code>Permissive Security</code>，从而导致<strong>无法运行任何iOS app</strong>：</p>
+</li>
+</ol>
+<p>![Permissive Policy Error](/images/disable-swap-on-macbookpro-2021/permissive-policy-error.png = 250x)</p>
+<p>因为我没有运行iOS app的需求，所以这一点对我没有任何影响。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 关机，长按电源键，选择进入Recovery</span>
+&gt; bputil -a <span style="color:#75715e"># Enables sending custom boot args to the kernel</span>
 
-<span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [
-  <span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ESLintPlugin</span>({
-    <span style="color:#a6e22e">cache</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
-    <span style="color:#a6e22e">eslintPath</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">resolve</span><span style="color:#f92672">&gt;</span> (<span style="color:#e6db74">&#39;eslint&#39;</span>),
-    <span style="color:#a6e22e">extensions</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;js&#39;</span>, <span style="color:#e6db74">&#39;jsx&#39;</span>, <span style="color:#e6db74">&#39;ts&#39;</span>, <span style="color:#f92672">&gt;</span> <span style="color:#e6db74">&#39;tsx&#39;</span>],
-    <span style="color:#a6e22e">files</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;src&#39;</span>,
-    <span style="color:#a6e22e">formatter</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;stylish&#39;</span>,
-    <span style="color:#a6e22e">ignore</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
-    <span style="color:#a6e22e">useEslintrc</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
-  }),
-  <span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>]
-</code></pre></div></blockquote>
-<blockquote>
-<p>Webpack 5不再auto-polyfill Node.js的模块，建议删除<code>node</code>配置项。有相关需求的可以看看<a href="https://github.com/webpack/webpack/issues/11868">这个Issue</a>。</p>
-</blockquote>
+<span style="color:#75715e"># 设置boot-args</span>
+&gt; nvram 40A0DDD2-77F8-4392-B4A3-1E7304206516:boot-args<span style="color:#f92672">=</span>vm_compressor<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</code></pre></div><p>重启，进入系统后使用如下命令，观察禁用swap是否生效：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt; sysctl vm.compressor_mode
+vm.compressor_mode: <span style="color:#ae81ff">2</span>
+</code></pre></div><p>恢复默认设置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 关机，长按电源键，选择进入Recovery</span>
+&gt; bputil -f
+&gt; nvram -d boot-args
+</code></pre></div><h2 id="参考文献">参考文献</h2>
+<ol>
+<li><a href="https://twitter.com/s1guza/status/1364209938223009795">https://twitter.com/s1guza/status/1364209938223009795</a></li>
+<li><a href="https://github.com/apple/darwin-xnu/blob/main/iokit/Kernel/IONVRAM.cpp#L152-L275">https://github.com/apple/darwin-xnu/blob/main/iokit/Kernel/IONVRAM.cpp#L152-L275</a></li>
+<li><a href="https://windsketch.cc/macbook-disable-swap/">https://windsketch.cc/macbook-disable-swap/</a></li>
+<li><a href="https://opensource.apple.com/source/xnu/xnu-7195.141.2/osfmk/vm/vm_pageout.h.auto.html#:~:text=%23define%20VM_PAGER_NOT_CONFIGURED%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%200x0,swap%20support%20too">https://opensource.apple.com/source/xnu/xnu-7195.141.2/osfmk/vm/vm_pageout.h.auto.html#:~:text=%23define%20VM_PAGER_NOT_CONFIGURED%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%200x0,swap%20support%20too</a>.*/</li>
+<li><a href="https://support.apple.com/guide/security/contents-a-localpolicy-file-mac-apple-silicon-secc745a0845/web">https://support.apple.com/guide/security/contents-a-localpolicy-file-mac-apple-silicon-secc745a0845/web</a></li>
+</ol>
 </div>
         <div class="post-footer">
             <div class="info">

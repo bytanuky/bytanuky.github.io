@@ -3,7 +3,7 @@
     <title> f32by | 使用VSCode进行Rust开发 </title>
 
     
-    <meta charset="utf-8"><meta name="generator" content="Hugo 0.83.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.89.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="description" content="">
     
     <link rel="stylesheet"
@@ -136,7 +136,7 @@
 </ol>
 <h2 id="安装rust">安装Rust</h2>
 <p>通过<code>Homebrew</code>：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$&gt; brew install rustup
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$&gt; brew install rustup
 $&gt; rustup install nightly <span style="color:#75715e"># 也可以使用stable channel</span>
 
 <span style="color:#75715e"># 配置环境变量</span>
@@ -184,19 +184,19 @@ rustc 1.54.0-nightly <span style="color:#f92672">(</span>3e99439f4 2021-05-17<sp
 <li>rustfmt文档中的示例代码配色。</li>
 </ol>
 <p>将如下配置放入VSCode的<code>settings.json</code>中：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;editor.tokenColorCustomizations&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;editor.tokenColorCustomizations&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
     <span style="color:#f92672">&#34;[Default Light+]&#34;</span>: {
         <span style="color:#f92672">&#34;comments&#34;</span>: <span style="color:#e6db74">&#34;#8c8c8c&#34;</span>,
-        <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#f92672">&#34;keywords&#34;</span>: <span style="color:#e6db74">&#34;#0033b3&#34;</span>,
-        <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#f92672">&#34;variables&#34;</span>: <span style="color:#e6db74">&#34;#000000&#34;</span>,
-        <span style="color:#f92672">&#34;textMateRules&#34;</span>: [
-            <span style="color:#960050;background-color:#1e0010">//</span> {
-            <span style="color:#960050;background-color:#1e0010">//</span>     <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;entity.name.type.rust&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">//</span>     <span style="color:#f92672">&#34;settings&#34;</span>: {
-            <span style="color:#960050;background-color:#1e0010">//</span>         <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#FF0000&#34;</span>
-            <span style="color:#960050;background-color:#1e0010">//</span>     }
-            <span style="color:#960050;background-color:#1e0010">//</span> },
-            {
+        <span style="color:#75715e">// &#34;keywords&#34;: &#34;#0033b3&#34;,
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// &#34;variables&#34;: &#34;#000000&#34;,
+</span><span style="color:#75715e"></span>        <span style="color:#f92672">&#34;textMateRules&#34;</span>: [
+            <span style="color:#75715e">// {
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//     &#34;scope&#34;: &#34;entity.name.type.rust&#34;,
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//     &#34;settings&#34;: {
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//         &#34;foreground&#34;: &#34;#FF0000&#34;
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//     }
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// },
+</span><span style="color:#75715e"></span>            {
                 <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;meta.function.definition.rust&#34;</span>,
                 <span style="color:#f92672">&#34;settings&#34;</span>: {
                     <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#00627a&#34;</span>
@@ -228,10 +228,10 @@ rustc 1.54.0-nightly <span style="color:#f92672">(</span>3e99439f4 2021-05-17<sp
     <span style="color:#f92672">&#34;[Default Light+]&#34;</span>: {
         <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
         <span style="color:#f92672">&#34;rules&#34;</span>: {
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">()</span> <span style="color:#960050;background-color:#1e0010">in</span> <span style="color:#960050;background-color:#1e0010">attributes</span>
-            <span style="color:#f92672">&#34;parenthesis.attribute:rust&#34;</span>: <span style="color:#e6db74">&#34;#9e880d&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Variable</span>
-            <span style="color:#f92672">&#34;angle:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#75715e">// () in attributes
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;parenthesis.attribute:rust&#34;</span>: <span style="color:#e6db74">&#34;#9e880d&#34;</span>,
+            <span style="color:#75715e">// Variable
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;angle:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
             <span style="color:#f92672">&#34;comma:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
             <span style="color:#f92672">&#34;brace:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
             <span style="color:#f92672">&#34;interface:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
@@ -241,46 +241,46 @@ rustc 1.54.0-nightly <span style="color:#f92672">(</span>3e99439f4 2021-05-17<sp
             <span style="color:#f92672">&#34;parenthesis:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
             <span style="color:#f92672">&#34;property:rust&#34;</span>: <span style="color:#e6db74">&#34;#871094&#34;</span>,
             <span style="color:#f92672">&#34;punctuation:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#f92672">&#34;struct:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
-            <span style="color:#f92672">&#34;variable:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
+            <span style="color:#75715e">// &#34;struct:rust&#34;: &#34;#052150&#34;,
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;variable:rust&#34;</span>: <span style="color:#e6db74">&#34;#052150&#34;</span>,
             <span style="color:#f92672">&#34;variable.static.constant:rust&#34;</span>: {
                 <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#871094&#34;</span>,
                 <span style="color:#f92672">&#34;italic&#34;</span>: <span style="color:#66d9ef">true</span>,
             },
 
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Method</span> <span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">function</span>
-            <span style="color:#f92672">&#34;method:rust&#34;</span>: <span style="color:#e6db74">&#34;#5e2bb4&#34;</span>,
+            <span style="color:#75715e">// Method / function
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;method:rust&#34;</span>: <span style="color:#e6db74">&#34;#5e2bb4&#34;</span>,
             <span style="color:#f92672">&#34;method.static.trait&#34;</span>: {
                 <span style="color:#f92672">&#34;italic&#34;</span>: <span style="color:#66d9ef">true</span>,
             },
             <span style="color:#f92672">&#34;function.declaration:rust&#34;</span>: <span style="color:#e6db74">&#34;#5e2bb4&#34;</span>,
             <span style="color:#f92672">&#34;function.attribute:rust&#34;</span>: <span style="color:#e6db74">&#34;#9e880d&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Macro</span>
-            <span style="color:#f92672">&#34;macro:rust&#34;</span>: <span style="color:#e6db74">&#34;#dd6718&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Keyword</span>
-            <span style="color:#f92672">&#34;keyword:rust&#34;</span>: <span style="color:#e6db74">&#34;#ca233a&#34;</span>,
+            <span style="color:#75715e">// Macro
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;macro:rust&#34;</span>: <span style="color:#e6db74">&#34;#dd6718&#34;</span>,
+            <span style="color:#75715e">// Keyword
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;keyword:rust&#34;</span>: <span style="color:#e6db74">&#34;#ca233a&#34;</span>,
             <span style="color:#f92672">&#34;builtinType:rust&#34;</span>: <span style="color:#e6db74">&#34;#ca233a&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Enum</span>
-            <span style="color:#f92672">&#34;enum:rust&#34;</span>: <span style="color:#e6db74">&#34;#0e72a4&#34;</span>,
+            <span style="color:#75715e">// Enum
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;enum:rust&#34;</span>: <span style="color:#e6db74">&#34;#0e72a4&#34;</span>,
             <span style="color:#f92672">&#34;enumMember:rust&#34;</span>: {
                 <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#0e72a4&#34;</span>,
                 <span style="color:#f92672">&#34;italic&#34;</span>: <span style="color:#66d9ef">true</span>
             },
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Comment</span>
-            <span style="color:#f92672">&#34;comment:rust&#34;</span>: <span style="color:#e6db74">&#34;#8c8c8c&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Type</span> <span style="color:#960050;background-color:#1e0010">parameter</span>
-            <span style="color:#f92672">&#34;typeParameter:rust&#34;</span>: {
+            <span style="color:#75715e">// Comment
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;comment:rust&#34;</span>: <span style="color:#e6db74">&#34;#8c8c8c&#34;</span>,
+            <span style="color:#75715e">// Type parameter
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;typeParameter:rust&#34;</span>: {
                 <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#43a047&#34;</span>,
                 <span style="color:#f92672">&#34;italic&#34;</span>: <span style="color:#66d9ef">true</span>,
                 <span style="color:#f92672">&#34;bold&#34;</span>: <span style="color:#66d9ef">true</span>
             },
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Lifetime</span>
-            <span style="color:#f92672">&#34;lifetime:rust&#34;</span>: <span style="color:#e6db74">&#34;#20999d&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Unresolved</span> <span style="color:#960050;background-color:#1e0010">reference</span>
-            <span style="color:#f92672">&#34;unresolvedReference&#34;</span>: {
+            <span style="color:#75715e">// Lifetime
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;lifetime:rust&#34;</span>: <span style="color:#e6db74">&#34;#20999d&#34;</span>,
+            <span style="color:#75715e">// Unresolved reference
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;unresolvedReference&#34;</span>: {
                 <span style="color:#f92672">&#34;foreground&#34;</span>: <span style="color:#e6db74">&#34;#d50000&#34;</span>,
-                <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#f92672">&#34;underline&#34;</span>: <span style="color:#66d9ef">true</span>,
-            }
+                <span style="color:#75715e">// &#34;underline&#34;: true,
+</span><span style="color:#75715e"></span>            }
         },
     },
 }<span style="color:#960050;background-color:#1e0010">,</span>

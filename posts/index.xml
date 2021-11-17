@@ -6,7 +6,19 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 20 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://f32.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://f32.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Apple Silicon设备上禁用swap</title>
+      <link>https://f32.io/posts/disable-swap-on-macbookpro-2021/</link>
+      <pubDate>Wed, 17 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://f32.io/posts/disable-swap-on-macbookpro-2021/</guid>
+      <description>步骤 64G内存不用就是浪费，日常开一个16G的ramdisk用于存放一些日常工作中频繁生成的临时文件、图片等。
+注意：
+  搭载Apple Silicon芯片设备上的默认系统安全策略变得更加保守，内核启动时会忽略自定义的启动参数（boot-args）。
+  使用此方法会导致安全等级降低至Permissive Security，从而导致无法运行任何iOS app：</description>
+    </item>
+    
     <item>
       <title>使用VSCode进行Rust开发</title>
       <link>https://f32.io/posts/rust-with-vscode/</link>
