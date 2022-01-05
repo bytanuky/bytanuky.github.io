@@ -2,57 +2,65 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title></title>
-    <link>https://f32.io/</link>
+    <link>https://f128.dev/</link>
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 17 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://f32.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://f128.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在Apple Silicon设备上禁用swap</title>
-      <link>https://f32.io/posts/disable-swap-on-macbookpro-2021/</link>
+      <link>https://f128.dev/posts/disable-swap-on-macbookpro-2021/</link>
       <pubDate>Wed, 17 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://f32.io/posts/disable-swap-on-macbookpro-2021/</guid>
-      <description>步骤 64G内存不用就是浪费，日常开一个16G的ramdisk用于存放一些日常工作中频繁生成的临时文件、图片等。
+      <guid>https://f128.dev/posts/disable-swap-on-macbookpro-2021/</guid>
+      
+        <description>步骤 64G内存不用就是浪费，日常开一个16G的ramdisk用于存放一些日常工作中频繁生成的临时文件、图片等。
 注意：
   搭载Apple Silicon芯片设备上的默认系统安全策略变得更加保守，内核启动时会忽略自定义的启动参数（boot-args）。
   使用此方法会导致安全等级降低至Permissive Security，从而导致无法运行任何iOS app：</description>
+      
     </item>
     
     <item>
       <title>使用VSCode进行Rust开发</title>
-      <link>https://f32.io/posts/rust-with-vscode/</link>
+      <link>https://f128.dev/posts/rust-with-vscode/</link>
       <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://f32.io/posts/rust-with-vscode/</guid>
-      <description>用了一段时间CLion，决定换到VSCode了，原因有下：
+      <guid>https://f128.dev/posts/rust-with-vscode/</guid>
+      
+        <description>用了一段时间CLion，决定换到VSCode了，原因有下：
   IntelliJ Rust插件解析proc macro很慢，Expanding macros导致修改某些含有多个macro调用的源文件很慢；
   rust-analyzer提供了更好的LSP支持，现阶段IntelliJ Rust仍然使用JetBrains自己写的Engine，估计后期会像clangd一样引入rust-analyzer；</description>
+      
     </item>
     
     <item>
       <title>React项目升级到Webpack 5</title>
-      <link>https://f32.io/posts/react-upgrade-to-webpack-5/</link>
+      <link>https://f128.dev/posts/react-upgrade-to-webpack-5/</link>
       <pubDate>Thu, 18 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://f32.io/posts/react-upgrade-to-webpack-5/</guid>
-      <description>create-react-app还没有更新对Webpack 5的支持，正好最近有空，自己动手升级一下。我的项目比较小，webpack.config.js和CRA eject出来的初始配置文件区别不大，大概花了半个小时弄好。
+      <guid>https://f128.dev/posts/react-upgrade-to-webpack-5/</guid>
+      
+        <description>create-react-app还没有更新对Webpack 5的支持，正好最近有空，自己动手升级一下。我的项目比较小，webpack.config.js和CRA eject出来的初始配置文件区别不大，大概花了半个小时弄好。
  官方升级文档：https://webpack.js.org/migrate/5/
  完整的webpack.config.js https://gist.github.com/f32by/b7245f57a88011443151836738816243
 要点  Terser Plugin中的sourceMap和cache已经被移除，需要删除这两个选项；</description>
+      
     </item>
     
     <item>
       <title>Vulkan 坐标系</title>
-      <link>https://f32.io/posts/vulkan-coordinate-system/</link>
+      <link>https://f128.dev/posts/vulkan-coordinate-system/</link>
       <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://f32.io/posts/vulkan-coordinate-system/</guid>
-      <description>不同图形API的NDC DirectX / Metal  Left-handed
+      <guid>https://f128.dev/posts/vulkan-coordinate-system/</guid>
+      
+        <description>不同图形API的NDC DirectX / Metal  Left-handed
 Y-down
 X-right
 Z-inward
 Depth [-1, 1]</description>
+      
     </item>
     
   </channel>

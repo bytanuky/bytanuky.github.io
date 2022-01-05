@@ -2,17 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>index on </title>
-    <link>https://f32.io/tags/index/</link>
+    <link>https://f128.dev/tags/index/</link>
     <description>Recent content in index on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language><atom:link href="https://f32.io/tags/index/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language><atom:link href="https://f128.dev/tags/index/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Posts</title>
-      <link>https://f32.io/posts/</link>
+      <link>https://f128.dev/posts/</link>
       <pubDate>Wed, 17 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://f32.io/posts/</guid>
-      <description></description>
+      <guid>https://f128.dev/posts/</guid>
+      
+        <description></description>
+      
     </item>
     
   </channel>
